@@ -1,0 +1,213 @@
+<?php
+
+use Illuminate\Http\Request;
+
+/*
+|--------------------------------------------------------------------------
+| API Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register API routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| is assigned the "api" middleware group. Enjoy building your API!
+|
+*/
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::apiResources(['user' => 'API\UserController']);
+Route::apiResources(['vuecomponents' => 'API\VuecomponentsController']);
+Route::apiResources(['formcomponents' => 'API\FormcomponentsController']);
+Route::apiResources(['mainmenucomponents' => 'API\MainmenucomponentController']);
+Route::apiResources(['branches' => 'API\BranchesController']);
+Route::apiResources(['submenus' => 'API\SubmenusController']);
+Route::apiResources(['expenses' => 'API\ExpensesController']);
+Route::apiResources(['student' => 'API\StudentsController']);
+Route::apiResources(['payouts' => 'API\BranchpayoutsController']);
+Route::apiResources(['makeexpense' => 'API\MadeexpensesConroller']);
+Route::apiResources(['makeexpenseofficeuser' => 'API\MadeexpensesofficeConroller']);
+Route::apiResources(['shopbalancingrecord' => 'API\BrachRecordBranchbalacingController']);
+
+
+Route::apiResources(['getexpensereportdetails' => 'API\ExpensesReportbybranchController']);
+Route::apiResources(['gamefixtures' => 'API\GamefixturesController']);
+Route::apiResources(['getincomereport' => 'API\Incomereport']);
+Route::apiResources(['getincomereportforcredits' => 'API\Incomereportscredits']);
+Route::apiResources(['getexpensesbycategoryreport' => 'API\ExpensesbycategoryReport']);
+
+///
+
+Route::apiResources(['roleandcomponentto' => 'API\RoleandformcomponentController']);
+Route::apiResources(['roletobalance' => 'API\RoleinactionController']);
+
+Route::apiResources(['roleaddformcomponent' => 'API\RoletoaddcomponentaccessController']);
+/// subtotals  BranchbalacingController
+Route::get('dailypayoutstotalbranch', 'APIController@Branchtotalsd');
+//////
+Route::apiResources(['branchtobalance' => 'API\BranchbalacingController']);
+
+Route::apiResources(['recordtoincomeviewreport' => 'API\Branchtoviewreportcontroller']);
+
+Route::apiResources(['expensesreportbybranch' => 'API\ExpensereportstoviewController']);
+
+
+Route::apiResources(['brachtocollectorcredit' => 'API\BranchtocollectfromController']);
+//////
+Route::apiResources(['makecashcollection' => 'API\CashCollectionController']);
+Route::apiResources(['makecashout' => 'API\CashoutController']);
+
+
+Route::apiResources(['finalcashout' => 'API\CashCreditController']);
+
+
+
+Route::get('profile', 'API\UserController@profile');
+Route::get('getMainmenues', 'APIController@getMainmenues');
+Route::get('getSubmenues', 'APIController@getSubmenues');
+Route::get('getExpensecategories', 'APIController@getexpensecategoriesdy');
+Route::get('getExpensetypes', 'APIController@getexpensetypes');
+Route::get('getBranches', 'APIController@getBranches');
+Route::get('getWalletlist', 'APIController@getWallets');
+Route::get('getcollections', 'APIController@getWallets');
+Route::get('getformfeatures', 'APIController@getformfeatures');
+Route::get('getmanmaderoles', 'APIController@getrolesmanmade');
+Route::get('getcomponentslistmissing', 'APIController@getmissicomps');
+Route::get('getlistofcomponents', 'APIController@getcomponentslist');
+Route::get('getrolenameinaction', 'APIController@getrolename');
+Route::get('getmainmenus', 'APIController@getmissicomps');
+
+
+Route::get('getExpenseslist', 'APIController@getlistofexpenses');
+Route::get('getExpensestomake', 'APIController@getExpensestomake');
+Route::get('getsystemroles', 'APIController@getsystemroles');
+Route::get('getMakeexpense', 'APIController@getaddnewexpense');
+//////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('getAddnewbalancingrecord', 'APIController@getaddnewbalancingrecord');
+Route::get('getviewbalancingrecord', 'APIController@getviewbalancingrecord');
+Route::get('geteditbalancingrecord', 'APIController@geteditbalancingrecord');
+Route::get('getdeletebalancingrecord', 'APIController@getdeletebalancingrecord');
+
+Route::get('getAddnewshopcollection', 'APIController@getAddnewshopcollection');
+Route::get('getviewshopcollectionrecord', 'APIController@getviewshopcollectionrecord');
+Route::get('geteditshopcollection', 'APIController@geteditshopcollection');
+Route::get('getdeleteshopcollection', 'APIController@getdeleteshopcollection');
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Route::get('getdailytotalexpenses', 'APIController@Branchdailyexpenses');
+//Route::get('branchtobalance', 'APIController@getLatestopenningbalance');
+Route::get('getbranchopenningb', 'APIController@Bopenningbalance');
+
+Route::get('getbranchnamebalancing', 'APIController@Branchnametobalancefunction'); 
+Route::get('getbranchnametocollectfrom', 'APIController@Branchnametocollectfrom'); 
+Route::get('getthedayscashin', 'APIController@Branchtobalancedayscashin'); 
+Route::get('getrantetotalcollection', 'APIController@Rangecollection');
+
+
+
+Route::get('gettotalexpensesintherange', 'APIController@Rangeexpensesreport');
+Route::get('getrantetotalcredits', 'APIController@Rangecredits');
+Route::get('getrantetotalexpenses', 'APIController@Rangeexpenses');
+Route::get('reportgetrantetotalexpenses', 'APIController@Expensesrangeonreport');
+///    
+Route::get('getdaycashinbranch', 'APIController@Branchtobalancedayscashin'); 
+Route::get('getdaycashoutbranch', 'APIController@Branchtobalancedayscashout'); 
+Route::get('getdayexpensesbranch', 'APIController@Branchtobalancedayexpenses'); 
+Route::get('getdaypayoutbranch', 'APIController@Branchtobalancedaypayout'); 
+Route::get('branchalreadybalanced', 'APIController@getIfthebranchisalreadybalanced');
+Route::get('pendingcashin', 'APIController@checkforapendingtransfercashin');
+//// component access
+Route::get('userscomponentaccess', 'APIController@acccessuserscomponent');
+Route::get('shopbalancingcomponentaccess', 'APIController@acccessshopbalancingcomponent');
+Route::get('shoppayoutcomponentaccess', 'APIController@acccessshoppayoutcomponent');
+
+Route::get('shopcasouttransactionscomponentaccess', 'APIController@acccessshopcasouttransactionscomponent');
+
+Route::get('shopcasintransactionscomponentaccess', 'APIController@acccessshopcashintransactionscomponent');
+Route::get('shopmakeexpensescomponentaccess', 'APIController@acccessbranchexpensesbranchcomponent');
+
+
+
+
+Route::get('branchescomponentaccess', 'APIController@acccessbranchescomponent');
+Route::get('companyexpensescomponentaccess', 'APIController@acccesscompanyexpensescomponent');
+Route::get('expensereportbybranchcomponentaccess', 'APIController@acccessexpensesreportbybranchcomponent');
+Route::get('expensereportbydatecomponentaccess', 'APIController@acccessexpensesreportbydatecomponent');
+Route::get('expensesreportbywalletcomponentaccess', 'APIController@acccessexpensesreportbywalletcomponent');
+Route::get('incomereportcomponentaccess', 'APIController@acccessincomereportcomponent');
+Route::get('accessmainmenucomponentaccess', 'APIController@acccessmainmenucomponent');
+Route::get('officemakeexpensecomponentaccess', 'APIController@acccessofficemakeexpensecomponent');
+Route::get('admincashcollectioncomponentaccess', 'APIController@acccessadmincashcollectioncomponent');
+Route::get('admincashissuecomponentaccess', 'APIController@acccessadmincashissuecomponent');
+Route::get('submenuscomponentaccess', 'APIController@acccesssubmenucomponent');
+Route::get('systemcomponentscomponentaccess', 'APIController@systemvuecomponentscomponent');
+
+Route::get('mainmenuaccesscomponentaccess', 'APIController@mainmenucomponentaccesscomponent');
+
+
+
+Route::get('subnmenuaccesscomponentaccess', 'APIController@submenucomponentaccessaccesscomponent');
+
+Route::get('adminmakepayoutcomponentaccess', 'APIController@branchpayoutadminaccesscomponent');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/// access to vue components
+Route::apiResources(['saveformcomponentaccess' => 'API\GiveaccesstoformcomponentController']);
+Route::apiResources(['saveaccesstovuecomponent' => 'API\GiveaccesstovuecomponentController']);
+Route::apiResources(['savemainmenuaccess' => 'API\GiveaccesstomainmenuController']);
+Route::apiResources(['savesubmenuaccess' => 'API\GiveaccesstosubmenuController']);
+////////////////////////////////////////////////////////////////////////////////////////////////////
+/// Working on the balancing Records
+Route::apiResources(['currentbalancingrecords' => 'API\CurrentShopbalancingContoller']);
+Route::apiResources(['authorisedcomponents' => 'API\AuthorisedcomponentsController']);
+
+
+Route::apiResources(['authorisedformcomponents' => 'API\AuthorisedformcomponentsController']);
+
+
+
+
+
+
+Route::apiResources(['authorisedmainmenus' => 'API\AuthorisedmainmenuController']);
+
+Route::apiResources(['authorisedsubmenus' => 'API\AuthorisedsubmenuController']);
+
+
+
+
+
+
+
+
+
+
+Route::apiResources(['branchcashdetails' => 'API\Branchshopcashdetails']);
+Route::apiResources(['cashindetails' => 'API\CashCollectionController']);
+Route::apiResources(['approvecashin' => 'API\ApproveCashinController']);
+Route::apiResources(['shopcashoutdetails' => 'API\ShopcasoutdetailsController']);
+Route::apiResources(['cashoutfromoffice' => 'API\CashCreditController']);
+Route::apiResources(['approvecashout' => 'API\ApproveCashoutController']);
+
+////////////////////////////////////////////////////////
+Route::get('gettodayscashout', 'APIController@Branchtodayscashout'); 
+Route::get('gettodayexpenses', 'APIController@Branchtodaysexpenses'); 
+Route::get('gettodayspayout', 'APIController@Branchtodayspayout'); 
+Route::get('gettodaycashin', 'APIController@Branchtodayscashin'); 
+Route::get('getbranchopenningbalancefortoday', 'APIController@Bopenningbalancetoday');
+
+Route::post('checks', 'CheckController@store');
+//GetShopbalancingrecords
+/// End of balancing Records
