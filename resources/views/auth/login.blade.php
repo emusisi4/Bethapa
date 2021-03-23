@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+.card-body2 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  background-color: #d6892b;
+ 
+}
+
+    </style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +21,7 @@
                 <div class="card-header">
                  <img  width="100" height="auto" src="images/logo.png" alt="innobet-logo"></div>
 
-                <div class="card-body">
+                <div class="card-body2">
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
 
