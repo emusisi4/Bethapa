@@ -53,33 +53,33 @@ class BranchesController extends Controller
         $pagnaf = 10;
 
 
-        $data = [];
+        // $data = [];
     
-        $childCategory = Branch::wheredel( '0' )->get();
+        // $childCategory = Branch::wheredel( '0' )->get();
     
-        foreach ( $childCategory as $childCat ) {
+        // foreach ( $childCategory as $childCat ) {
     
-            $checkChildes = Madeexpense::wherebranch( $childCat->id )->count();
+        //     $checkChildes = Madeexpense::wherebranch( $childCat->id )->count();
             
            
     
-            $data[] = [ $childCat->id,
+        //     $data[] = [ $childCat->id,
                        
                        
                    
-                        $childCat->branchname,
-                        $checkChildes
-                    ];
-        }
+        //                 $childCat->branchname,
+        //                 $checkChildes
+        //             ];
+        // }
     
-        return response()->json( [$data] );
+        // return response()->json( [$data] );
 
 
 
-     //   return     Branch::latest('id')
+   return     Branch::latest('id')
        // ->where('del', 0)
-       // ->get();
-     //  ->paginate($pagnaf);
+ //->get();
+       ->paginate($pagnaf);
 //$dd = 
 //        DB::table('branches')->paginate(15);
       }
@@ -107,12 +107,7 @@ class BranchesController extends Controller
       
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
